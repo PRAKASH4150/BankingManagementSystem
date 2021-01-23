@@ -1,0 +1,37 @@
+<section [hidden]="submitted">
+    <h2>Add Hangar</h2>
+    <div id="outer-container">
+        <div id="inner-container">
+            <form (ngSubmit)="onSubmit()"#addHangarForm="ngForm">
+                <div class="form-group">
+                    <label for="hangarName" class="field">Hangar Name<span class="mandatory">*</span></label>
+                    <input type="text" class="form-control" required name="hangarName" [(ngModel)]="hangarDetails.hangarName"
+                    #hangarName="ngModel" [class.is-invalid]="hangarName.touched && hangarName.invalid">
+                    <small class="text-danger" *ngIf="hangarName.touched && hangarName.invalid">
+                        HangarName field cannot be empty
+                    </small> 
+                </div>
+
+                <div class="form-group">
+                    <label for="hangarCapacity" class="field">Hangar Capacity (sqFt)<span class="mandatory">*</span></label>
+                    <input type="text" class="form-control" required name="hangarCapacity" [(ngModel)]="hangarDetails.hangarCapacity"
+                    #hangarCapacity="ngModel" [class.is-invalid]="hangarCapacity.touched && hangarCapacity.invalid">
+                    <small class="text-danger" *ngIf="hangarCapacity.touched && hangarCapacity.invalid">
+                        HangarCapacity field cannot be empty
+                    </small> 
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-success" id="addHangarButton" [disabled]="addHangarForm.invalid">Add Hangar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+<section [hidden]="!submitted">
+    <div id="postSubmit">
+        <h3 class="text-success">Hangar Details have been submitted successfully!!</h3>
+    </div>
+</section>

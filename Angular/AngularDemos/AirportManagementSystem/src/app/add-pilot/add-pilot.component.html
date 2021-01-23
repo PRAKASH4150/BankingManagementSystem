@@ -1,0 +1,56 @@
+<section [hidden]="submitted">
+    <h2>Add Pilot</h2>
+    <div id="outer-container">
+        <div id="inner-container">
+            <form (ngSubmit)="onSubmit()"#addPilotForm="ngForm">
+                <div class="form-group">
+                    <label for="pilotName" class="field">Pilot Name<span class="mandatory">*</span></label>
+                    <input type="text" class="form-control" required name="pilotName" [(ngModel)]="pilotDetails.pilotName"
+                    #pilotName="ngModel" [class.is-invalid]="pilotName.touched && pilotName.invalid">
+                    <small class="text-danger" *ngIf="pilotName.touched && pilotName.invalid">
+                        PilotName field cannot be empty
+                    </small> 
+                </div>
+
+                <div class="form-group">
+                    <label for="pilotAge" class="field">Pilot Age<span class="mandatory">*</span></label>
+                    <input type="text" class="form-control" required name="pilotAge" [(ngModel)]="pilotDetails.pilotAge"
+                    #pilotAge="ngModel" [class.is-invalid]="pilotAge.touched && pilotAge.invalid"  pattern="^\d{2}$">
+                    <div *ngIf="pilotAge.errors && (pilotAge.invalid && pilotAge.touched)" >
+                        <small class="text-danger" *ngIf="pilotAge.errors.required">PilotAge field cannot be empty</small> 
+                        <small class="text-danger" *ngIf="pilotAge.errors.pattern">Age must be two digits</small> 
+                    </div> 
+                </div>
+
+                <div class="form-group">
+                    <label for="pilotRanking" class="field">Pilot Ranking<span class="mandatory">*</span></label>
+                    <input type="text" class="form-control" required name="pilotRanking" [(ngModel)]="pilotDetails.pilotRanking"
+                    #pilotRanking="ngModel" [class.is-invalid]="pilotRanking.touched && pilotRanking.invalid">
+                    <small class="text-danger" *ngIf="pilotRanking.touched && pilotRanking.invalid">
+                        PilotRanking field cannot be empty
+                    </small> 
+                </div>
+
+                <div class="form-group">
+                    <label for="pilotCompanyName" class="field">Company Name<span class="mandatory">*</span></label>
+                    <input type="text" class="form-control" required name="pilotCompanyName" [(ngModel)]="pilotDetails.pilotCompanyName"
+                    #pilotCompanyName="ngModel" [class.is-invalid]="pilotCompanyName.touched && pilotCompanyName.invalid">
+                    <small class="text-danger" *ngIf="pilotCompanyName.touched && pilotCompanyName.invalid">
+                        CompanyName field cannot be empty
+                    </small> 
+                </div>
+                
+                <div class="form-group">
+                    <button class="btn btn-success" id="addpilotButton" [disabled]="addPilotForm.invalid">Add Plane</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+<section [hidden]="!submitted">
+    <div id="postSubmit">
+        <h3 class="text-success">Pilot Details have been submitted successfully!!</h3>
+    </div>
+</section>

@@ -1,0 +1,55 @@
+<section [hidden]="submitted">
+    <h2>Add Planes</h2>
+    <div id="outer-container">
+        <div id="inner-container">
+            <form (ngSubmit)="onSubmit()"#addPlaneForm="ngForm">
+                <div class="form-group">
+                    <label for="planeName" class="field">Plane Name<span class="mandatory">*</span></label>
+                    <input type="text" class="form-control" required name="planeName" [(ngModel)]="planeDetails.planeName"
+                    #planeName="ngModel" [class.is-invalid]="planeName.touched && planeName.invalid">
+                    <small class="text-danger" *ngIf="planeName.touched && planeName.invalid">
+                        PlaneName field cannot be empty
+                    </small> 
+                </div>
+
+                <div class="form-group">
+                    <label for="planeSource" class="field">Plane Source<span class="mandatory">*</span></label>
+                    <input type="text" class="form-control" required name="planeSource" [(ngModel)]="planeDetails.planeSource"
+                    #planeSource="ngModel" [class.is-invalid]="planeSource.touched && planeSource.invalid">
+                    <small class="text-danger" *ngIf="planeSource.touched && planeSource.invalid">
+                        PlaneSource field cannot be empty
+                    </small> 
+                </div>
+
+                <div class="form-group">
+                    <label for="planeDestination" class="field">Plane Destination<span class="mandatory">*</span></label>
+                    <input type="text" class="form-control" required name="planeDestination" [(ngModel)]="planeDetails.planeDestination"
+                    #planeDestination="ngModel" [class.is-invalid]="planeDestination.touched && planeDestination.invalid">
+                    <small class="text-danger" *ngIf="planeDestination.touched && planeDestination.invalid">
+                        PlaneDestination field cannot be empty
+                    </small> 
+                </div>
+
+                <div class="form-group">
+                    <label for="planeType" class="field">Plane Type<span class="mandatory">*</span></label>
+                    <input type="text" class="form-control" required name="planeType" [(ngModel)]="planeDetails.planeType"
+                    #planeType="ngModel" [class.is-invalid]="planeType.touched && planeType.invalid">
+                    <small class="text-danger" *ngIf="planeType.touched && planeType.invalid">
+                        PlaneType field cannot be empty
+                    </small> 
+                </div>
+                
+                <div class="form-group">
+                    <button class="btn btn-success" id="addplaneButton" [disabled]="addPlaneForm.invalid">Add Plane</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+<section [hidden]="!submitted">
+    <div id="postSubmit">
+        <h3 class="text-success">Plane Details have been submitted successfully!!</h3>
+    </div>
+</section>

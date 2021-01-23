@@ -1,0 +1,35 @@
+<section>
+    <h2>Welcome to admin</h2>
+    <div [hidden]="!submitted">
+        <h4 id="errorMessage">{{adminCredentialsError}}</h4>
+    </div>
+    <div id="outer-container">
+        <div id="inner-container">
+          <form (ngSubmit)="onSubmit()" #adminForm="ngForm">
+            <div class="form-group">
+                <label for="userName" class="field">Username<span class="mandatory">*</span></label>
+                <input type="text" class="form-control" name="userName" required [(ngModel)]="admin.userName"
+                #userName="ngModel" [class.is-invalid]="userName.touched && userName.invalid">
+                <small *ngIf="userName.touched && userName.invalid" 
+                [class.d-none]="username.untouched && username.valid" class="text-danger">
+                    Username field cannot be empty
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="field">Password<span class="mandatory">*</span></label>
+                <input type="password" class="form-control" name="password" required [(ngModel)]="admin.password"
+                #password="ngModel"  [class.is-invalid]="password.touched && password.invalid">
+                <small *ngIf="password.touched && password.invalid" 
+                [class.d-none]="password.untouched && password.valid" class="text-danger">
+                 Password field cannot be empty
+                </small>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-success" id="loginbutton" [disabled]="adminForm.invalid">Login</button>
+            </div>
+          </form>
+        </div>
+    </div> 
+</section>

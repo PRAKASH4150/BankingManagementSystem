@@ -1,0 +1,48 @@
+section h2
+{
+    text-align: center;
+    color: crimson;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight:bold;
+    padding-top:2%;
+}
+#outer-container
+{
+    border:2px solid lightgrey;
+    width:500px;
+    border-radius:5px;
+    margin:30px auto;
+}
+#inner-container
+{
+    padding:2%;
+}
+.field
+{
+    font-weight:bold;
+    font-size:20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.mandatory
+{
+    color:red;
+    font-size:20px;
+}
+
+.text-danger
+{
+    font-weight:bold;
+    font-size:15px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#addpilotButton
+{
+    font-weight:bold;
+    width:100%;
+    padding:0.5%;
+}
+#postSubmit
+{
+    text-align:center;
+    padding-top:2%;
+}

@@ -1,0 +1,29 @@
+<div>
+    <h2>Hangar List</h2>
+    <div id="errorMessage">
+        <h4>{{errorMessage}}</h4>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <th class="field">Hangar Id</th>
+            <th class="field">Hangar Name</th>
+            <th class="field">Hangar Capacity</th>
+            <th class="field">Hanagr Status</th>
+            <th class="field">Action</th>
+        </thead>
+     
+        <tbody>
+            <tr *ngFor="let hangar of hangarList | async " style="width: 300px;" >
+                <td class="value">{{hangar.hangarId}}</td>
+                <td class="value">{{hangar.hangarName}}</td>
+                <td class="value">{{hangar.hangarCapacity}}</td>
+                <td *ngIf="hangar.hangarStatus==null"class="value">
+                    Empty
+                </td>
+                <td>
+                    <button class="btn btn-primary" (click)="onClick(hangar)">Allocate</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

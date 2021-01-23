@@ -1,0 +1,30 @@
+<div>
+    <h2>Pilot List</h2>
+    <div id="errorMessage">
+        <h4>{{errorMessage}}</h4>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <th class="field">Pilot Id</th>
+            <th class="field">Pilot Name</th>
+            <th class="field">Pilot Age</th>
+            <th class="field">Pilot Ranking</th>
+            <th class="field">Pilot CompanyName</th>
+            <th class="field">Plane Allocation</th>
+        </thead>
+     
+        <tbody>
+            <tr *ngFor="let pilot of pilotList | async " style="width: 300px;" >
+                <td class="value">{{pilot.pilotId}}</td>
+                <td class="value">{{pilot.pilotName}}</td>
+                <td class="value">{{pilot.pilotAge}}</td>
+                <td class="value">{{pilot.pilotRanking}}</td>
+                <td class="value">{{pilot.pilotCompanyName}}</td>
+                <td class="value">{{pilot.planeAllocation}}</td>
+                <td>
+                    <button class="btn btn-primary" (click)="onClick(hangar)">Allocate</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

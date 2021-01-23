@@ -1,0 +1,30 @@
+<div>
+    <h2>Manager List</h2>
+    <table class="table table-striped">
+        <thead>
+            <th class="field">First Name</th>
+            <th class="field">Last Name</th>
+            <th class="field">Age</th>
+            <th class="field">Gender</th>
+            <th class="field">Contact Number</th>
+            <th class="field">Approval Status</th>
+            <th class="field">Actions</th>
+        </thead>
+     
+        <tbody>
+            <tr *ngFor="let manager of managerList | async" style="width: 300px;" >
+                <td class="value">{{manager.firstName}}</td>
+                <td class="value">{{manager.lastName}}</td>
+                <td class="value">{{manager.age}}</td>
+                <td class="value">{{manager.gender}}</td>
+                <td class="value">{{manager.contactNumber}}</td>
+                <td class="value">{{manager.approvalStatus}}</td>
+                <td *ngIf="manager.approvalStatus=='Pending';else else_block" class="value">
+                    <span class="btn btn-primary" (click)='approveManager(manager)'>Approve</span>
+                    <span class="btn btn-danger" (click)='rejectManager(manager)'>Reject</span>
+                </td>
+                <ng-template #else_block class="value">No actions needed</ng-template>
+            </tr>
+        </tbody>
+    </table>
+</div>

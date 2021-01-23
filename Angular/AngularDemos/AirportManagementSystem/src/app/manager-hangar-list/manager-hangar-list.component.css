@@ -1,0 +1,30 @@
+div h2
+{
+    text-align: center;
+    color: crimson;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight:bold;
+    padding-top:2%;
+}
+.field
+{
+    text-align: center;
+    width:300px;
+}
+.value
+{
+    width:300px;
+    text-align: center;
+
+}
+
+.btn
+{
+    min-width:90px;
+    max-width:100px;
+    margin-left:100px;
+}
+#elseblock
+{
+    text-align:center;
+}
