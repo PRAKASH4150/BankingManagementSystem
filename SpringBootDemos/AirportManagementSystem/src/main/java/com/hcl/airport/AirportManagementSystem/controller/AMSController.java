@@ -89,9 +89,57 @@ public class AMSController {
 		return new ResponseEntity<>(amsService.getEmptyHangarDetails(),new HttpHeaders(),HttpStatus.OK);
 	}
 	
-	@PutMapping("/allocatehangarremote/{hangarId}/{planeId}")
+	@GetMapping("/allocatehangarremote/{hangarId}/{planeId}")
 	public ResponseEntity<String> allocateHangarRemote(@PathVariable("hangarId") long hangarId,@PathVariable("planeId") long planeId)
 	{
 		return new ResponseEntity<>(amsService.allocateHangarRemote(hangarId, planeId),new HttpHeaders(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/getfreepilotsremote")
+	public ResponseEntity<List<PilotDetails>> getFreePilots()
+	{
+		return new ResponseEntity<>(amsService.getFreePilotDetailsRemote(),new HttpHeaders(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/allocatepilotremote/{pilotId}/{planeId}")
+	public ResponseEntity<String> allocatePilotRemote(@PathVariable("pilotId") long pilotId,@PathVariable("planeId") long planeId)
+	{
+		return new ResponseEntity<>(amsService.allocatePilotRemote(pilotId, planeId),new HttpHeaders(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/allremoteplanes")
+	public ResponseEntity<List<PlaneDetails>> getAllPlanesRemote()
+	{
+		return new ResponseEntity<>(amsService.getAllRemotePlanes(),new HttpHeaders(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/allremotepilots")
+	public ResponseEntity<List<PilotDetails>> getAllPilotsRemote()
+	{
+		return new ResponseEntity<>(amsService.getAllremotePilots(),new HttpHeaders(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/getpilotremotebyid/{pilotId}")
+	public ResponseEntity<PilotDetails> findRemotePilotById(@PathVariable("pilotId") long pilotId)
+	{
+		return new ResponseEntity<>(amsService.findRemotePilotById(pilotId),new HttpHeaders(),HttpStatus.OK);
+	}
+	
+	@PutMapping("/updateremotepilot")
+	public ResponseEntity<PilotDetails> updateRemotePilot(@RequestBody PilotDetails pilotDetails)
+	{
+		return new ResponseEntity<>(amsService.updatePilot(pilotDetails),new HttpHeaders(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/getplaneremotebyid/{planeId}")
+	public ResponseEntity<PlaneDetails> findRemotePlaneById(@PathVariable("planeId") long planeId)
+	{
+		return new ResponseEntity<>(amsService.findRemotePlaneById(planeId),new HttpHeaders(),HttpStatus.OK);
+	}
+	
+	@PutMapping("/updateremoteplane")
+	public ResponseEntity<PlaneDetails> updateRemotePlane(@RequestBody PlaneDetails planeDetails)
+	{
+		return new ResponseEntity<>(amsService.updateRemotePlane(planeDetails),new HttpHeaders(),HttpStatus.OK);
 	}
 }

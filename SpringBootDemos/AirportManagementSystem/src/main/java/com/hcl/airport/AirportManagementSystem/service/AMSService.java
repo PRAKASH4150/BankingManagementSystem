@@ -22,4 +22,12 @@ public interface AMSService {
 	public String validateManagerRemote(ManagerCredentials managerCredentials);
 	public List<HangarDetails> getEmptyHangarDetails();
 	public String allocateHangarRemote(long hangarId,long planeId);
+	public List<PilotDetails> getFreePilotDetailsRemote();
+	public String allocatePilotRemote(long pilotId, long planeId);
+	public List<PlaneDetails> getAllRemotePlanes();
+	public List<PilotDetails> getAllremotePilots();
+	public PilotDetails findRemotePilotById(long pilotId);
+	public PilotDetails updatePilot(PilotDetails pilotDetails);
+	public PlaneDetails findRemotePlaneById(long planeId);
+	public PlaneDetails updateRemotePlane(PlaneDetails planeDetails);
 }

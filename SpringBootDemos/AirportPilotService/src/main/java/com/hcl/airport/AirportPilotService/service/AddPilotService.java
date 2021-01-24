@@ -12,4 +12,10 @@ public interface AddPilotService {
 	public List<PilotDetails> getAllPilotDetails();
 	
 	public Optional<List<PilotDetails>> getFreePilotDetails();
+	
+	public PilotDetails allocatePlane(long pilotId,long planeId);
+	
+	public PilotDetails findPilotById(long pilotId);
+	
+	public PilotDetails updatePilotDetails(PilotDetails pilotDetails);
 }

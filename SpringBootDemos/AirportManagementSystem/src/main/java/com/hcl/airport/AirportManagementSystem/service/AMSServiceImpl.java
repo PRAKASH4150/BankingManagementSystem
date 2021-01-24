@@ -141,11 +141,11 @@ public class AMSServiceImpl implements AMSService {
 		String response;
 		HttpHeaders httpHeaders=new HttpHeaders();
 	    HttpEntity<String> entity = new HttpEntity<String>(httpHeaders);
-	    response=restTemplate.exchange("http://localhost:7070/allocatehangar/"+hangarId+"/"+planeId,HttpMethod.PUT,entity,String.class).getBody();		
+	    response=restTemplate.exchange("http://localhost:7070/allocatehangar/"+hangarId+"/"+planeId,HttpMethod.GET,entity,String.class).getBody();		
 	    
 	    if(response.equals("success"))
 	    {
-	    	restTemplate.exchange("http://localhost:7072/allocateplane/"+hangarId+"/"+planeId,HttpMethod.PUT,entity,HangarDetails.class);
+	    	restTemplate.exchange("http://localhost:7072/allocateplane/"+hangarId+"/"+planeId,HttpMethod.GET,entity,HangarDetails.class);
 	    	return response;
 	    }
 	    else
@@ -153,4 +153,77 @@ public class AMSServiceImpl implements AMSService {
 	    	return response;
 	    }
 	}
+
+	@Override
+	public List<PilotDetails> getFreePilotDetailsRemote() {
+		
+		 ResponseEntity<PilotDetails[]> responseEntity= restTemplate.getForEntity("http://localhost:7071/getfreepilots", PilotDetails[].class);
+		    return  Arrays.asList(responseEntity.getBody());
+	}
+
+	@Override
+	public String allocatePilotRemote(long pilotId, long planeId) {
+
+		String response;
+		HttpHeaders httpHeaders=new HttpHeaders();
+	    HttpEntity<String> entity = new HttpEntity<String>(httpHeaders);
+	    
+	    response=restTemplate.exchange("http://localhost:7070/allocatepilot/"+pilotId+"/"+planeId,HttpMethod.GET,entity,String.class).getBody();		
+	    
+	    if(response.equals("success"))
+	    {
+	    	restTemplate.exchange("http://localhost:7071/allocateplane/"+pilotId+"/"+planeId,HttpMethod.GET,entity,HangarDetails.class);
+	    	return response;
+	    }
+	    else
+	    {
+	    	return response;
+	    }}
+
+	@Override
+	public List<PlaneDetails> getAllRemotePlanes() {
+		
+		  ResponseEntity<PlaneDetails[]> responseEntity= restTemplate.getForEntity("http://localhost:7070/getallplanes", PlaneDetails[].class);
+		    return  Arrays.asList(responseEntity.getBody());
+	}
+
+	@Override
+	public List<PilotDetails> getAllremotePilots() {
+		
+		ResponseEntity<PilotDetails[]> responseEntity= restTemplate.getForEntity("http://localhost:7071/getallpilots", PilotDetails[].class);
+	    return  Arrays.asList(responseEntity.getBody());
+	}
+
+	@Override
+	public PilotDetails findRemotePilotById(long pilotId) {
+		
+		HttpHeaders httpHeaders=new HttpHeaders();
+	    HttpEntity<PilotDetails> entity = new HttpEntity<PilotDetails>(httpHeaders);
+		return  restTemplate.exchange("http://localhost:7071/findpilotbyid/"+pilotId,HttpMethod.GET,entity,PilotDetails.class).getBody();
+	}
+
+	@Override
+	public PilotDetails updatePilot(PilotDetails pilotDetails) {
+
+		 HttpHeaders headers = new HttpHeaders();
+	     HttpEntity<PilotDetails> entity = new HttpEntity<PilotDetails>(pilotDetails,headers);
+	     return restTemplate.exchange( "http://localhost:7071/updatePilot", HttpMethod.PUT, entity, PilotDetails.class).getBody();	
+	}
+
+	@Override
+	public PlaneDetails findRemotePlaneById(long planeId) {
+		
+		HttpHeaders httpHeaders=new HttpHeaders();
+	    HttpEntity<PlaneDetails> entity = new HttpEntity<PlaneDetails>(httpHeaders);
+		return  restTemplate.exchange("http://localhost:7070/getplanebyid/"+planeId,HttpMethod.GET,entity,PlaneDetails.class).getBody();
+	}
+
+	@Override
+	public PlaneDetails updateRemotePlane(PlaneDetails planeDetails) {
+		
+		 HttpHeaders headers = new HttpHeaders();
+	     HttpEntity<PlaneDetails> entity = new HttpEntity<PlaneDetails>(planeDetails,headers);
+	     return restTemplate.exchange( "http://localhost:7070/updateplanedetails", HttpMethod.PUT, entity, PlaneDetails.class).getBody();
+	}
+	
 }

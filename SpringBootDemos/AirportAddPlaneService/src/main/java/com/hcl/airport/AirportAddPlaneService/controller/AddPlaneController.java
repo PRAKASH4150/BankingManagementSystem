@@ -51,9 +51,31 @@ public class AddPlaneController {
 		}
 	}
 	
-	@PutMapping("/allocatehangar/{hangarId}/{planeId}")
+	@GetMapping("/allocatehangar/{hangarId}/{planeId}")
 	public ResponseEntity<String> allocateHangar(@PathVariable("hangarId") long hangarId,@PathVariable("planeId") long planeId)
 	{
 		return new ResponseEntity<>(addPlaneService.allocateHangar(hangarId, planeId),new HttpHeaders(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/allocatepilot/{pilotId}/{planeId}")
+	public ResponseEntity<String> allocatePilot(@PathVariable("pilotId") long pilotId,@PathVariable("planeId")long planeId)
+	{
+		log.info("Entered in to allocatePilot method of AddPlaneController class");
+		return new ResponseEntity<>(addPlaneService.allocatePilot(pilotId, planeId),new HttpHeaders(),HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("/getplanebyid/{planeId}")
+	public ResponseEntity<PlaneDetails> getPlaneById(@PathVariable("planeId") long planeId)
+	{
+		log.info("Entered in to getPlaneById method of AddPlaneController class");
+		return new ResponseEntity<>(addPlaneService.getPlaneById(planeId),new HttpHeaders(),HttpStatus.OK);
+	}
+	
+	@PutMapping("/updateplanedetails")
+	public ResponseEntity<PlaneDetails> updatePlaneDetails(@RequestBody PlaneDetails planeDetails)
+	{
+		log.info("Entered in to updatePlaneDetails() method of AddPlaneController class");
+		return new ResponseEntity<>(addPlaneService.updatePlaneDetails(planeDetails),new HttpHeaders(),HttpStatus.OK);
 	}
 }

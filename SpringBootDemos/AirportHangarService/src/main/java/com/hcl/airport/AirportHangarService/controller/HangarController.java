@@ -71,7 +71,7 @@ public class HangarController {
 		}
 	}
 	
-	@PutMapping("/allocateplane/{hangarId}/{planeId}")
+	@GetMapping("/allocateplane/{hangarId}/{planeId}")
 	public ResponseEntity<HangarDetails> allocatePlane(@PathVariable("hangarId") long hangarId,@PathVariable("planeId")long planeId)
 	{
 		log.info("Entered in to allocatePlane method of HangarController class");

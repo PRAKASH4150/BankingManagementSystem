@@ -37,4 +37,36 @@ public class AddPilotServiceImpl implements AddPilotService{
 		return addPilotRepository.getFreePilotDetails();
 	}
 
+	@Override
+	public PilotDetails allocatePlane(long pilotId, long planeId) {
+		
+		log.info("Entered in to allocate Plane method od AddPilotServiceImpl class");
+		Optional<PilotDetails> pilotDetailsOptional=addPilotRepository.findById(pilotId);
+		PilotDetails pilotDetails=null;
+		if(pilotDetailsOptional.isPresent())
+		{
+			pilotDetails=pilotDetailsOptional.get();
+			pilotDetails.setPlaneId(planeId);
+			pilotDetails.setPlaneAllocation("Allocated");
+			addPilotRepository.save(pilotDetails);
+			return pilotDetails;
+		}
+		else
+		{
+			return pilotDetails;
+		}
+	}
+
+	@Override
+	public PilotDetails findPilotById(long pilotId) {
+		log.info("Entered in to findPilotById method of AddPilotServiceImpl class");
+		Optional<PilotDetails> pilotDetailsOptional=addPilotRepository.findById(pilotId);
+		return pilotDetailsOptional.get();
+	}
+
+	@Override
+	public PilotDetails updatePilotDetails(PilotDetails pilotDetails) {
+		log.info("Entered in to updatePilotDetails method of AddPilotServiceImpl class");
+		return addPilotRepository.save(pilotDetails);
+	}
 }
