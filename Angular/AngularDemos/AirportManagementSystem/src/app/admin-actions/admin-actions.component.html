@@ -10,9 +10,17 @@
         <li class="nav-item">
           <a class="nav-link"  routerLink="add-hangar">AddHangar</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link"  routerLink="manager-list">ManagerList</a>
-        </li>
+         <!-- Dropdown -->
+        <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Views
+           </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item"  routerLink="manager-list">ManagerList</a>
+            <a class="dropdown-item" routerLink="pilot-list">Pilot List</a>
+           <a class="dropdown-item" routerLink="plane-list">Plane List</a>
+           </div>
+       </li>
       </ul>
     </nav>
 </section>

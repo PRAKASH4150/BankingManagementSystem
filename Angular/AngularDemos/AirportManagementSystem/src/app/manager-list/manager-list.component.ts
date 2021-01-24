@@ -11,6 +11,8 @@ import { ManagerDetails } from '../manager-details';
 export class ManagerListComponent implements OnInit {
 
   managerList:Observable<ManagerDetails[]>;
+  count:Number=5;
+  p:Number=1;
   constructor(private airportService:AirportService) { }
 
   ngOnInit() {

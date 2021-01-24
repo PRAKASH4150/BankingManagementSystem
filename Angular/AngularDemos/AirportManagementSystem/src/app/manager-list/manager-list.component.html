@@ -12,7 +12,7 @@
         </thead>
      
         <tbody>
-            <tr *ngFor="let manager of managerList | async" style="width: 300px;" >
+            <tr *ngFor="let manager of managerList | async | paginate:{itemsPerPage:count,currentPage:p}" style="width: 300px;" >
                 <td class="value">{{manager.firstName}}</td>
                 <td class="value">{{manager.lastName}}</td>
                 <td class="value">{{manager.age}}</td>
@@ -23,8 +23,12 @@
                     <span class="btn btn-primary" (click)='approveManager(manager)'>Approve</span>
                     <span class="btn btn-danger" (click)='rejectManager(manager)'>Reject</span>
                 </td>
-                <ng-template #else_block class="value">No actions needed</ng-template>
+                <ng-template #else_block class="value"><td class="value">No actions needed</td></ng-template>
             </tr>
         </tbody>
     </table>
+
+    <div class="text-right">
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </div>
 </div>

@@ -1,0 +1,34 @@
+<div>
+    <h2>Plane List</h2>
+    <h4 *ngIf="(planeList | async)?.length==0; else elseblock" id="infoMessage">
+        There are no planes to show
+    </h4>
+    <ng-template #elseblock>
+        <table class="table table-striped">
+            <thead>
+                <th class="field">Plane Id</th>
+                <th class="field">Plane Name</th>
+                <th class="field">Source</th>
+                <th class="field">Destination</th>
+                <th class="field">Plane Type</th>
+                <th class="field">Action</th>
+            </thead>
+         
+            <tbody>
+                <tr *ngFor="let plane of planeList | async | paginate:{itemsPerPage:count,currentPage:p} " style="width: 300px;" >
+                    <td class="value">{{plane.planeId}}</td>
+                    <td class="value">{{plane.planeName}}</td>
+                    <td class="value">{{plane.planeSource}}</td>
+                    <td class="value">{{plane.planeDestination}}</td>
+                    <td class="value">{{plane.planeType}}</td>
+                    <td class="value">
+                        <button class="btn btn-primary" (click)="editPlane(plane)">Update</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-right">
+            <pagination-controls (pageChange)="p=$event"></pagination-controls>
+        </div>
+    </ng-template>
+</div>

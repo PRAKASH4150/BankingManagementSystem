@@ -1,7 +1,7 @@
 <div>
-    <h2>Available Pilots</h2>
+    <h2>Pilot List</h2>
     <h4 *ngIf="(pilotList | async)?.length==0; else elseblock" id="infoMessage">
-        Currently all pilots are allocated to some planes
+        There are no pilots to show
     </h4>
     <ng-template #elseblock>
         <div [hidden]="error" id="errorMessage">
@@ -14,26 +14,26 @@
                 <th class="field">Pilot Age</th>
                 <th class="field">Pilot Ranking</th>
                 <th class="field">Pilot CompanyName</th>
-                <th class="field">Plane Allocation</th>
                 <th class="field">Actions</th>
             </thead>
          
             <tbody>
-                <tr *ngFor="let pilot of pilotList | async | paginate:{itemsPerPage:count,currentPage:p} " style="width: 300px;" >
+                <tr *ngFor="let pilot of pilotList | async | paginate:{itemsPerPage:count,currentPage:p}" style="width: 300px;" >
                     <td class="value">{{pilot.pilotId}}</td>
                     <td class="value">{{pilot.pilotName}}</td>
                     <td class="value">{{pilot.pilotAge}}</td>
                     <td class="value">{{pilot.pilotRanking}}</td>
                     <td class="value">{{pilot.pilotCompanyName}}</td>
-                    <td class="value" *ngIf="pilot.planeAllocation==null">None</td>
                     <td class="value">
-                        <button class="btn btn-primary" (click)="onClick(pilot)">Allocate</button>
+                        <button class="btn btn-primary" (click)="editPilot(pilot)">Update</button>
                     </td>
                 </tr>
             </tbody>
         </table>
+    
         <div class="text-right">
             <pagination-controls (pageChange)="p=$event"></pagination-controls>
         </div>
     </ng-template>
+    
 </div>

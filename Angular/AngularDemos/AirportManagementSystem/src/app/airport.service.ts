@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { PilotDetails } from './pilot-details';
+import { PlaneDetails } from './plane-details';
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +69,47 @@ export class AirportService {
 
    allocateHangar(hangarId:Number,planeId:Number):Observable<any>
    {
-     return this.http.put(this.baseUrl+"/allocatehangarremote/"+hangarId+"/"+planeId,{responseType:'text'});
+     return this.http.get(this.baseUrl+"/allocatehangarremote/"+hangarId+"/"+planeId,{responseType:"text"});
    }
+
+   getFreePilots():Observable<any>
+   { 
+     return this.http.get(this.baseUrl+"/getfreepilotsremote");
+   }
+
+   allocatePilot(pilotId:Number,planeId:Number):Observable<any>
+   {
+     return this.http.get(this.baseUrl+"/allocatepilotremote/"+pilotId+"/"+planeId,{responseType:"text"});
+   }
+
+   getAllPlanes():Observable<any>
+   {
+     return this.http.get(this.baseUrl+"/allremoteplanes");
+   }
+
+   getAllPilots():Observable<any>
+   {
+     return this.http.get(this.baseUrl+"/allremotepilots");
+   }
+
+   getPilotById(pilotId:Number):Observable<any>
+   {
+     return this.http.get(this.baseUrl+"/getpilotremotebyid/"+pilotId);
+   }
+
+   updatePilotDetails(pilotDetails:PilotDetails):Observable<any>
+   {
+     return this.http.put(this.baseUrl+"/updateremotepilot",pilotDetails);
+   }
+
+   getPlaneById(planeId:Number):Observable<any>
+   {
+     return this.http.get(this.baseUrl+"/getplaneremotebyid/"+planeId);
+   }
+
+   updatePlaneDetails(planeDetails:PlaneDetails):Observable<any>
+   {
+     return this.http.put(this.baseUrl+"/updateremoteplane",planeDetails);
+   }
+   
 }

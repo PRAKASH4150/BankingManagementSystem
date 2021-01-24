@@ -17,26 +17,10 @@ div h2
     text-align: center;
 
 }
-
-.btn
-{
-    min-width:90px;
-    max-width:100px;
-}
-#elseblock
-{
-    text-align:center;
-}
-#errorMessage
-{
-    text-align:center;
-    color:red;
-    font-weight:bold;
-}
 #infoMessage
 {
-    text-align: center;
-    font-weight: bold;
+    text-align:center;
+    font-weight:bold;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color:midnightblue;
 

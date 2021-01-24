@@ -1,0 +1,45 @@
+<div>
+    <h2>Plane List</h2>
+    <h4 *ngIf="(planeList | async)?.length==0; else elseblock" id="infoMessage">
+        There are no planes to show.
+    </h4>
+    <ng-template #elseblock>
+        <table class="table table-striped">
+            <thead>
+                <th class="field">Plane Id</th>
+                <th class="field">Plane Name</th>
+                <th class="field">Source</th>
+                <th class="field">Destination</th>
+                <th class="field">Plane Type</th>
+                <th class="field">Hangar Id</th>
+                <th class="field">Pilot Id</th>
+                <th class="field">HangarAllocation</th>
+                <th class="field">PilotAllocation</th>
+            </thead>
+         
+            <tbody>
+                <tr *ngFor="let plane of planeList | async | paginate:{itemsPerPage:count,currentPage:p}" style="width: 300px;" >
+                    <td class="value">{{plane.planeId}}</td>
+                    <td class="value">{{plane.planeName}}</td>
+                    <td class="value">{{plane.planeSource}}</td>
+                    <td class="value">{{plane.planeDestination}}</td>
+                    <td class="value">{{plane.planeType}}</td>
+                    <td class="value">{{plane.hangarId}}</td>
+                    <td class="value">{{plane.pilotId}}</td>
+                    <td *ngIf="plane.hangarAllocation!=null; else elseblock1" class="value">{{plane.hangarAllocation}}</td>
+                    <ng-template #elseblock1>
+                        <td class="value">Vacant</td>
+                    </ng-template>
+                    <td *ngIf="plane.pilotAllocation!=null; else elseblock2" class="value">{{plane.pilotAllocation}}</td>
+                    <ng-template #elseblock2>
+                        <td class="value">Unallocated</td>
+                    </ng-template>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-right">
+            <pagination-controls (pageChange)="p=$event"></pagination-controls>
+        </div>
+    </ng-template>
+    
+</div>
